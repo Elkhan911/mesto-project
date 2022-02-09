@@ -1,0 +1,9 @@
+.elements__item {
+  border: 1px solid green;
+  max-width: 282px;
+}
+
+/* @media screen and (min-width: 320px) and (max-width: 767px) {
+  .elements__item {
+  }
+} */

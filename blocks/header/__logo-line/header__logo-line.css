@@ -1,0 +1,12 @@
+.header__logo-line {
+  max-width: 880px;
+  display: block;
+  margin: auto;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header__logo-line {
+    width: 320px;
+    height: 0px;
+  }
+}

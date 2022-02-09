@@ -1,0 +1,138 @@
+@import url(blocks/pages/pages.css);
+@import url(./fonts/fonts.css);
+@import url(./vendor/normalize.css);
+
+@import url(blocks/elements/elements.css);
+@import url(blocks/elements/__container/elements__container.css);
+@import url(blocks/elements/__image/elements__image.css);
+@import url(blocks/elements/__item/elements__item.css);
+@import url(blocks/elements/__like-button/elements__like-button.css);
+@import url(blocks/elements/__title/elements__title.css);
+@import url(blocks/footer/footer.css);
+@import url(blocks/footer/__text/footer__text.css);
+@import url(blocks/header/header.css);
+@import url(blocks/header/__logo/header__logo.css);
+@import url(blocks/header/__logo-line/header__logo-line.css);
+@import url(blocks/profile/profile.css);
+@import url(blocks/profile/__add-button/profile__add-button.css);
+@import url(blocks/profile/__avatar/profile__avatar.css);
+@import url(blocks/profile/__container/profile__info-container.css);
+@import url(blocks/profile/__edit-button/profile__edit-button.css);
+@import url(blocks/profile/__info/profile__info.css);
+@import url(blocks/profile/__info-container/profile__info-container.css);
+@import url(blocks/profile/__subtitle/profile__subtitle.css);
+@import url(blocks/profile/__text-container/profile__text-container.css);
+@import url(blocks/profile/__title/profile__title.css);
+@import url(blocks/profile/__container/profile__container.css);
+@import url();
+@import url();
+
+/* .form__section {
+  outline: 1px solid saddlebrown;
+  max-width: 430px;
+  margin: auto;
+}
+
+.form {
+}
+
+.form__heading {
+  outline: 1px solid saddlebrown;
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.form__text {
+  outline: 1px solid saddlebrown;
+  width: 358px;
+  height: 27px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0 0 13px 0;
+  text-align: left;
+  text-justify: end;
+} */
+
+.popup__container {
+  max-width: 430px;
+  margin: auto;
+  padding: 40px 0 40px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 430px;
+  height: auto;
+  margin: 0;
+  padding: 34px 36px 37px 36px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgb(0 0 0 / 15%);
+}
+
+.form__title {
+  margin: 0 0 54px 0;
+  padding: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.form__input {
+  width: 100%;
+  height: 27px;
+  margin: 0 0 5px 0;
+  padding: 0 0 15px 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.form__error {
+  min-height: 12px;
+  margin: 0 0 13px 0;
+  padding: 0;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.form__button_disabled {
+  color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  cursor: default;
+}
+
+.form__button {
+  margin: 15px 0 0 0;
+  padding: 0;
+  height: 50px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  box-sizing: border-box;
+}
