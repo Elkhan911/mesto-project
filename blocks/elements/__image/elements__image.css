@@ -4,8 +4,3 @@
   object-fit: contain;
   border-radius: 10px 10px 0px 0px;
 }
-
-/* @media screen and (min-width: 320px) and (max-width: 767px) {
-  .elements__image {
-  }
-} */

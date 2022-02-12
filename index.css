@@ -28,7 +28,6 @@
 @import url();
 
 .form__container {
-  outline: 10px solid blueviolet;
   max-width: 430px;
   margin: 50px auto 50px;
   min-height: 330px;
