@@ -1,0 +1,13 @@
+.popup__item-name {
+  display: block;
+  margin: 0 36px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 581px) {
+  .popup__item-name {
+    width: 238px;
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
