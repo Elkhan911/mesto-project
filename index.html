@@ -37,34 +37,38 @@
         </div>
       </section>
 
-      <div class="form__container">
-        <form class="form__admin">
-          <div class="form__main-container">
-            <h2 class="form__heading">Редактировать профиль</h2>
-
-            <fieldset class="form__input-container">
+      <div class="popup">
+        <div class="popup__container">
+          <form name="popup-form" class="popup__form form" action="">
+            <fieldset class="form__fieldset fieldset">
+              <button class="popup__close-button button" type="button"></button>
+              <h2 class="popup__title">Редактировать профиль</h2>
               <label for="name"></label>
               <input
-                class="form__input-item"
+                class="popup__item popup__item-name"
                 type="text"
                 id="name"
-                value="Жак-Ив Кусто"
+                value=""
+                placeholder="Имя"
+                required=""
               />
 
               <label for="description"></label>
               <input
-                class="form__input-item"
+                class="popup__item popup__item-descrption"
                 type="text"
                 id="description"
-                value="Исследователь океана"
+                value=""
+                placeholder="Описание"
+                required=""
               />
-            </fieldset>
 
-            <fieldset class="form__fieldset-button">
-              <input class="form__input-button" type="submit" />
+              <button type="submit" class="popup__submit-button button">
+                Создать
+              </button>
             </fieldset>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
       <section class="elements">
