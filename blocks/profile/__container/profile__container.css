@@ -1,4 +1,5 @@
 .profile__container {
+  max-width: 100%;
   display: flex;
   padding-left: 30px;
 }

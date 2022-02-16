@@ -2,7 +2,7 @@
   width: 24px;
   height: 24px;
   margin: 17px 0 0 18px;
-  background-image: url(../../../images/Edit\ Button.svg);
+  background-image: url(../../../images/Edit-Button.svg);
   background-color: black;
   background-repeat: no-repeat;
   background-position: center center;
@@ -23,5 +23,8 @@
     height: 18px;
     padding-left: 10px;
     display: block;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-left: 10px;
   }
 }

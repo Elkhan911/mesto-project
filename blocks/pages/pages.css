@@ -1,8 +1,16 @@
 .pages {
-  background-color: black;
-  color: white;
-  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-family: "Inter", "Arial", sans-serif;
+  margin: auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  background-color: black;
+  color: white;
+  max-width: 1280px;
+  min-width: 320px;
 }
