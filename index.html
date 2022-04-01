@@ -46,9 +46,9 @@
 
     <div class="popup popup_edit">
       <div class="popup__container">
-        <button class="popup__close-button button" type="button"></button>
         <form name="popup-form" class="popup__form form" action="">
           <fieldset class="form__fieldset fieldset">
+            <button class="popup__close-button button" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <label for="name"></label>
             <input
@@ -80,19 +80,25 @@
 
     <div class="popup popup_card">
       <div class="popup__container">
-        <button class="popup__close-button button" type="button"></button>
         <form name="popup-form" class="popup__form form" action="">
           <fieldset class="form__fieldset fieldset">
+            <button class="popup__close-button button" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
             <label for="name"></label>
-            <input class="popup__item popup__item-name" type="text" id="name
-            card value="" placeholder="Название" required="" />
+            <input
+              class="popup__item popup__item-name"
+              type="text"
+              id="name"
+              value=""
+              placeholder="Название"
+              required=""
+            />
 
             <label for="description"></label>
             <input
               class="popup__item popup__item-descrption"
               type="text"
-              id="description card"
+              id="description"
               value=""
               placeholder="Ссылка на картинку"
               required=""
@@ -111,7 +117,7 @@
         <button class="popup__close-button button" type="button"></button>
         <figure class="popup__figure">
           <img class="popup__image" src="#" alt="" />
-          <figcaption class="popup__caption"></figcaption>
+          <figcaption class="popup__figcaption"></figcaption>
         </figure>
       </div>
     </div>

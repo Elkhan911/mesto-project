@@ -3,7 +3,7 @@
   height: 100vh;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
-  top: 70px;
+  top: 0;
   left: 0;
   display: none;
 }
