@@ -2,6 +2,7 @@
  * VARIABLES
  **********************************************************/
 
+/* cards */
 const initialCards = [
   {
     name: "Архыз",
@@ -31,9 +32,13 @@ const initialCards = [
 const elementsSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card");
 
+/* profile */
 const editBtn = document.querySelector(".profile__edit-button");
 const addCardBtn = document.querySelector(".profile__add-button");
+const profileTitle = document.querySelector(".profile__title");
+const profileSubtitle = document.querySelector(".profile__subtitle");
 
+/* popups */
 const editPopup = document.querySelector(".popup_edit");
 const addCardPopup = document.querySelector(".popup_card");
 const imagePopup = document.querySelector(".popup_image");
@@ -42,17 +47,11 @@ const editPopupClsBtn = editPopup.querySelector(".popup__close-button");
 const addCardPopupClsBtn = addCardPopup.querySelector(".popup__close-button");
 const imagePopupClsBtn = imagePopup.querySelector(".popup__close-button");
 
-// getting forms
+/* forms */
 const addCardForm = addCardPopup.querySelector(".popup__form");
 const editForm = editPopup.querySelector(".popup__form");
-
-// getting edit form fields
 const editFormName = editForm.querySelector(".popup__item-name");
 const editFormDescription = editForm.querySelector(".popup__item-descrption");
-
-// getting profile elements
-const profileTitle = document.querySelector(".profile__title");
-const profileSubtitle = document.querySelector(".profile__subtitle");
 
 /**********************************************************
  * MAIN CODE
@@ -70,7 +69,6 @@ for (let i = 0; i < initialCards.length; i = i + 1) {
  * ADDING LISTENERS
  **********************************************************/
 
-// filling form fields with profile data
 editBtn.addEventListener("click", function () {
   editFormName.value = profileTitle.textContent;
   editFormDescription.value = profileSubtitle.textContent;
@@ -89,6 +87,10 @@ addCardPopupClsBtn.addEventListener("click", function () {
   togglePopup(addCardPopup);
 });
 
+imagePopupClsBtn.addEventListener("click", function () {
+  togglePopup(imagePopup);
+});
+
 addCardForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -101,7 +103,6 @@ addCardForm.addEventListener("submit", function (event) {
   addCardForm.reset();
 });
 
-// handle edit form
 editForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -134,6 +135,10 @@ function createCard(name, link) {
     deleteElement(newCardTrashBtn.closest(".elements__item"));
   });
 
+  newCardImage.addEventListener("click", function () {
+    showImage(name, link);
+  });
+
   return newCard;
 }
 
@@ -147,4 +152,15 @@ function deleteElement(elem) {
 
 function togglePopup(popup) {
   popup.classList.toggle("popup_opened");
+}
+
+function showImage(name, link) {
+  const image = imagePopup.querySelector(".popup__image");
+  const caption = imagePopup.querySelector(".popup__caption");
+
+  image.src = link;
+  image.alt = name;
+  caption.textContent = name;
+
+  togglePopup(imagePopup);
 }
