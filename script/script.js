@@ -160,7 +160,6 @@ function showImage(name, link) {
 
   image.src = link;
   image.alt = name;
-  caption.textContent = name;
 
   togglePopup(imagePopup);
 }
