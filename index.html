@@ -37,107 +37,106 @@
         </div>
       </section>
 
-      <div class="popup">
-        <div class="popup__container">
-          <form name="popup-form" class="popup__form form" action="">
-            <fieldset class="form__fieldset fieldset">
-              <button class="popup__close-button button" type="button"></button>
-              <h2 class="popup__title">Редактировать профиль</h2>
-              <label for="name"></label>
-              <input
-                class="popup__item popup__item-name"
-                type="text"
-                id="name"
-                value=""
-                placeholder="Имя"
-                required=""
-              />
-
-              <label for="description"></label>
-              <input
-                class="popup__item popup__item-descrption"
-                type="text"
-                id="description"
-                value=""
-                placeholder="Описание"
-                required=""
-              />
-
-              <button type="submit" class="popup__submit-button button">
-                Создать
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-
-      <section class="elements">
-        <article class="elements__item">
-          <img class="elements__image" src="images/1.png" alt="картинка" />
-          <div class="elements__container">
-            <h3 class="elements__title">Карачаевск</h3>
-            <button
-              class="elements__like-button elements__like-button_active"
-            />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img class="elements__image" src="images/2.png" alt="картинка" />
-          <div class="elements__container">
-            <h3 class="elements__title">Гора Эльбрус</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img class="elements__image" src="images/3.png" alt="картинка" />
-          <div class="elements__container">
-            <h3 class="elements__title">Домбай</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img
-            class="elements__image"
-            src="images/Екатеринбург.jpeg"
-            alt="картинка"
-          />
-          <div class="elements__container">
-            <h3 class="elements__title">Екатеринбург</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img
-            class="elements__image"
-            src="images/Кабардино-Балкария.jpg"
-            alt="картинка"
-          />
-          <div class="elements__container">
-            <h3 class="elements__title">Кабардино-Балкария</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img
-            class="elements__image"
-            src="images/Владикавказ.jpg"
-            alt="картинка"
-          />
-          <div class="elements__container">
-            <h3 class="elements__title">Владикавказ</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-      </section>
+      <section class="elements"></section>
     </div>
 
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+
+    <div class="popup popup_edit">
+      <div class="popup__container">
+        <button class="popup__close-button button" type="button"></button>
+        <form name="popup-form" class="popup__form form" action="">
+          <fieldset class="form__fieldset fieldset">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <label for="name"></label>
+            <input
+              class="popup__item popup__item-name"
+              type="text"
+              id="name"
+              value=""
+              placeholder="Имя"
+              required=""
+            />
+
+            <label for="description"></label>
+            <input
+              class="popup__item popup__item-descrption"
+              type="text"
+              id="description"
+              value=""
+              placeholder="Описание"
+              required=""
+            />
+
+            <button type="submit" class="popup__submit-button button">
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_card">
+      <div class="popup__container">
+        <button class="popup__close-button button" type="button"></button>
+        <form name="popup-form" class="popup__form form" action="">
+          <fieldset class="form__fieldset fieldset">
+            <h2 class="popup__title">Новое место</h2>
+            <label for="name"></label>
+            <input
+              class="popup__item popup__item-name"
+              type="text"
+              id="name"
+              value=""
+              placeholder="Название"
+              required=""
+            />
+
+            <label for="description"></label>
+            <input
+              class="popup__item popup__item-descrption"
+              type="text"
+              id="description"
+              value=""
+              placeholder="Ссылка на картинку"
+              required=""
+            />
+
+            <button type="submit" class="popup__submit-button button">
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_image">
+      <div class="popup__container">
+        <button class="popup__close-button button" type="button"></button>
+        <figure class="popup__figure">
+          <img class="popup__image" src="#" alt="" />
+          <figcaption class="popup__caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <template id="card">
+      <article class="elements__item">
+        <img
+          class="elements__trash"
+          src="./images/logo/Trash.svg"
+          alt="Корзина"
+        />
+        <img class="elements__image" src="" alt="" />
+        <div class="elements__container">
+          <h3 class="elements__title"></h3>
+          <button class="elements__like-button" />
+        </div>
+      </article>
+    </template>
+
+    <script src="script/script.js"></script>
   </body>
 </html>
