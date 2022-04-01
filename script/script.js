@@ -53,13 +53,20 @@ function createCard(name, link) {
   const newCardTitle = newCard.querySelector(".elements__title");
   // getting like button
   const newCardLikeBtn = newCard.querySelector(".elements__like-button");
+  // getting trash button
+  const newCardTrashBtn = newCard.querySelector(".elements__trash");
 
   newCardImage.src = link;
   newCardImage.alt = name;
   newCardTitle.textContent = name;
-  // adding event listener
+  // adding event listener for like button
   newCardLikeBtn.addEventListener("click", function () {
     toggleLike(newCardLikeBtn);
+  });
+
+  //adding event listener for trash button
+  newCardTrashBtn.addEventListener("click", function () {
+    DeleteElement(newCardTrashBtn.closest(".elements__item"));
   });
 
   return newCard;
@@ -68,4 +75,9 @@ function createCard(name, link) {
 // function for like buttons
 function toggleLike(button) {
   button.classList.toggle("elements__like-button_active");
+}
+
+//function for delete DOM-elements
+function DeleteElement(elem) {
+  elem.remove();
 }
