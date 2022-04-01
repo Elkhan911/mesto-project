@@ -51,10 +51,21 @@ function createCard(name, link) {
   const newCard = cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
   const newCardTitle = newCard.querySelector(".elements__title");
+  // getting like button
+  const newCardLikeBtn = newCard.querySelector(".elements__like-button");
 
   newCardImage.src = link;
   newCardImage.alt = name;
   newCardTitle.textContent = name;
+  // adding event listener
+  newCardLikeBtn.addEventListener("click", function () {
+    toggleLike(newCardLikeBtn);
+  });
 
   return newCard;
+}
+
+// function for like buttons
+function toggleLike(button) {
+  button.classList.toggle("elements__like-button_active");
 }
