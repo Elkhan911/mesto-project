@@ -1,16 +1,13 @@
 .form__fieldset {
-  max-width: 430px;
   display: flex;
   flex-direction: column;
-  position: relative;
-  padding: 0;
+  padding: 36px;
   margin: 0;
   border: 0;
 }
 
 @media screen and (max-width: 580px) {
   .form__fieldset {
-    max-width: 282px;
-    min-height: 322px;
+    padding: 25px 22px;
   }
 }
