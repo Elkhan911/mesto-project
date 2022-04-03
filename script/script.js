@@ -4,30 +4,30 @@
 
 /* cards */
 const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
+    {
+        name: "Архыз",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    },
+    {
+        name: "Челябинская область",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    },
+    {
+        name: "Иваново",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    },
+    {
+        name: "Камчатка",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    },
+    {
+        name: "Холмогорский район",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    },
+    {
+        name: "Байкал",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    },
 ];
 const elementsSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card");
@@ -65,10 +65,10 @@ const editFormDescription = editForm.querySelector(".popup__item-descrption");
 
 // adding cards from initialCards array:
 for (let i = 0; i < initialCards.length; i = i + 1) {
-  const cardName = initialCards[i].name;
-  const cardLink = initialCards[i].link;
-  const card = createCard(cardName, cardLink);
-  elementsSection.append(card);
+    const cardName = initialCards[i].name;
+    const cardLink = initialCards[i].link;
+    const card = createCard(cardName, cardLink);
+    elementsSection.append(card);
 }
 
 /**********************************************************
@@ -76,44 +76,44 @@ for (let i = 0; i < initialCards.length; i = i + 1) {
  **********************************************************/
 
 editBtn.addEventListener("click", function () {
-  editFormName.value = profileTitle.textContent;
-  editFormDescription.value = profileSubtitle.textContent;
-  togglePopup(editPopup);
+    editFormName.value = profileTitle.textContent;
+    editFormDescription.value = profileSubtitle.textContent;
+    togglePopup(editPopup);
 });
 
 addCardBtn.addEventListener("click", function () {
-  togglePopup(addCardPopup);
+    togglePopup(addCardPopup);
 });
 
 editPopupClsBtn.addEventListener("click", function () {
-  togglePopup(editPopup);
+    togglePopup(editPopup);
 });
 
 addCardPopupClsBtn.addEventListener("click", function () {
-  togglePopup(addCardPopup);
+    togglePopup(addCardPopup);
 });
 
 imagePopupClsBtn.addEventListener("click", function () {
-  togglePopup(imagePopup);
+    togglePopup(imagePopup);
 });
 
 addCardForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const newCard = createCard(addFormName.value, addFormlink.value);
+    const newCard = createCard(addFormName.value, addFormlink.value);
 
-  elementsSection.prepend(newCard);
-  togglePopup(addCardPopup);
-  addCardForm.reset();
+    elementsSection.prepend(newCard);
+    togglePopup(addCardPopup);
+    addCardForm.reset();
 });
 
 editForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  profileTitle.textContent = editFormName.value;
-  profileSubtitle.textContent = editFormDescription.value;
+    profileTitle.textContent = editFormName.value;
+    profileSubtitle.textContent = editFormDescription.value;
 
-  togglePopup(editPopup);
+    togglePopup(editPopup);
 });
 
 /**********************************************************
@@ -121,47 +121,49 @@ editForm.addEventListener("submit", function (event) {
  **********************************************************/
 
 function createCard(name, link) {
-  const newCard = cardTemplate.content.cloneNode(true);
-  const newCardImage = newCard.querySelector(".elements__image");
-  const newCardTitle = newCard.querySelector(".elements__title");
-  const newCardLikeBtn = newCard.querySelector(".elements__like-button");
-  const newCardTrashBtn = newCard.querySelector(".elements__trash");
+    const newCard = cardTemplate.content.cloneNode(true);
+    const newCardImage = newCard.querySelector(".elements__image");
+    const newCardTitle = newCard.querySelector(".elements__title");
+    const newCardLikeBtn = newCard.querySelector(".elements__like-button");
+    const newCardTrashBtn = newCard.querySelector(".elements__trash");
 
-  newCardImage.src = link;
-  newCardImage.alt = name;
-  newCardTitle.textContent = name;
+    newCardImage.src = link;
+    newCardImage.alt = name;
+    newCardTitle.textContent = name;
 
-  newCardLikeBtn.addEventListener("click", function () {
-    toggleLike(newCardLikeBtn);
-  });
+    newCardLikeBtn.addEventListener("click", function () {
+        toggleLike(newCardLikeBtn);
+    });
 
-  newCardTrashBtn.addEventListener("click", function () {
-    deleteElement(newCardTrashBtn.closest(".elements__item"));
-  });
+    newCardTrashBtn.addEventListener("click", function () {
+        deleteElement(newCardTrashBtn.closest(".elements__item"));
+    });
 
-  newCardImage.addEventListener("click", function () {
-    showImage(name, link);
-  });
+    newCardImage.addEventListener("click", function () {
+        showImage(name, link);
+    });
 
-  return newCard;
+    return newCard;
 }
 
 function toggleLike(button) {
-  button.classList.toggle("elements__like-button_active");
+    button.classList.toggle("elements__like-button_active");
 }
 
 function deleteElement(elem) {
-  elem.remove();
+    elem.remove();
 }
 
 function togglePopup(popup) {
-  popup.classList.toggle("popup_opened");
+    popup.classList.toggle("popup_opened");
 }
 
 function showImage(name, link) {
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupImageCaption.textContent = name;
+    
 
-  togglePopup(imagePopup);
+    popupImage.src = link;
+    popupImage.alt = name;
+    popupImageCaption.textContent = name;
+
+    togglePopup(imagePopup);
 }

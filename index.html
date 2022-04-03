@@ -1,142 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Elkhan B" />
-    <meta name="description" content="туристические места России" />
-    <meta name="keywords" content="путешествия по России" />
-    <link rel="stylesheet" href="./index.css" />
-    <title>mesto</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Elkhan B" />
+        <meta name="description" content="туристические места России" />
+        <meta name="keywords" content="путешествия по России" />
+        <link rel="stylesheet" href="./index.css" />
+        <title>mesto</title>
+    </head>
 
-  <body class="pages">
-    <header class="header">
-      <img class="header__logo" src="images/logo/logo.svg" alt="логотип" />
-      <img class="header__logo-line" src="images/logo/Line.svg" alt="логотип" />
-    </header>
-
-    <div class="main">
-      <section class="profile">
-        <div class="profile__info-container">
-          <div class="profile__info">
+    <body class="pages">
+        <header class="header">
             <img
-              class="profile__avatar"
-              src="images/Avatar.png"
-              alt="картинка"
+                class="header__logo"
+                src="images/logo/logo.svg"
+                alt="логотип"
             />
-            <div class="profile__container">
-              <div class="profile__text-container">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <p class="profile__subtitle">Исследователь океана</p>
-              </div>
-              <button class="profile__edit-button" />
+            <img
+                class="header__logo-line"
+                src="images/logo/Line.svg"
+                alt="логотип"
+            />
+        </header>
+
+        <div class="main">
+            <section class="profile">
+                <div class="profile__info-container">
+                    <div class="profile__info">
+                        <img
+                            class="profile__avatar"
+                            src="images/Avatar.png"
+                            alt="картинка"
+                        />
+                        <div class="profile__container">
+                            <div class="profile__text-container">
+                                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                                <p class="profile__subtitle">Исследователь океана</p>
+                            </div>
+                            <button class="profile__edit-button" />
+                        </div>
+                    </div>
+                    <button class="profile__add-button" />
+                </div>
+            </section>
+
+            <section class="elements"></section>
+        </div>
+
+        <footer class="footer">
+            <p class="footer__text">© 2020 Mesto Russia</p>
+        </footer>
+
+        <div class="popup popup_edit">
+            <div class="popup__container">
+                <button
+                    class="popup__close-button button"
+                    type="button"
+                ></button>
+                <form name="popup-form" class="popup__form form" action="">
+                    <fieldset class="form__fieldset fieldset">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <label for="name"></label>
+                        <input
+                            class="popup__item popup__item-name"
+                            type="text"
+                            id="name"
+                            value=""
+                            placeholder="Имя"
+                            required=""
+                        />
+
+                        <label for="description"></label>
+                        <input
+                            class="popup__item popup__item-descrption"
+                            type="text"
+                            id="description"
+                            value=""
+                            placeholder="Описание"
+                            required=""
+                        />
+
+                        <button
+                            type="submit"
+                            class="popup__submit-button button"
+                        >
+                            Сохранить
+                        </button>
+                    </fieldset>
+                </form>
             </div>
-          </div>
-          <button class="profile__add-button" />
         </div>
-      </section>
 
-      <section class="elements"></section>
-    </div>
+        <div class="popup popup_card">
+            <div class="popup__container">
+                <button
+                    class="popup__close-button button"
+                    type="button"
+                ></button>
+                <form name="popup-form" class="popup__form form" action="">
+                    <fieldset class="form__fieldset fieldset">
+                        <h2 class="popup__title">Новое место</h2>
+                        <label for="name"></label>
+                        <input
+                            class="popup__item popup__item-name"
+                            type="text"
+                            id="name"
+                            value=""
+                            placeholder="Название"
+                            required=""
+                        />
 
-    <footer class="footer">
-      <p class="footer__text">© 2020 Mesto Russia</p>
-    </footer>
+                        <label for="description"></label>
+                        <input
+                            class="popup__item popup__item-descrption"
+                            type="text"
+                            id="description"
+                            value=""
+                            placeholder="Ссылка на картинку"
+                            required=""
+                        />
 
-    <div class="popup popup_edit">
-      <div class="popup__container">
-        <form name="popup-form" class="popup__form form" action="">
-          <fieldset class="form__fieldset fieldset">
-            <button class="popup__close-button button" type="button"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <label for="name"></label>
-            <input
-              class="popup__item popup__item-name"
-              type="text"
-              id="name"
-              value=""
-              placeholder="Имя"
-              required=""
-            />
-
-            <label for="description"></label>
-            <input
-              class="popup__item popup__item-descrption"
-              type="text"
-              id="description"
-              value=""
-              placeholder="Описание"
-              required=""
-            />
-
-            <button type="submit" class="popup__submit-button button">
-              Сохранить
-            </button>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-
-    <div class="popup popup_card">
-      <div class="popup__container">
-        <form name="popup-form" class="popup__form form" action="">
-          <fieldset class="form__fieldset fieldset">
-            <button class="popup__close-button button" type="button"></button>
-            <h2 class="popup__title">Новое место</h2>
-            <label for="name"></label>
-            <input
-              class="popup__item popup__item-name"
-              type="text"
-              id="input-name"
-              value=""
-              placeholder="Название"
-              required=""
-            />
-
-            <label for="description"></label>
-            <input
-              class="popup__item popup__item-descrption"
-              type="text"
-              id="input-description"
-              value=""
-              placeholder="Ссылка на картинку"
-              required=""
-            />
-
-            <button type="submit" class="popup__submit-button button">
-              Сохранить
-            </button>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-
-    <div class="popup popup_image">
-      <div class="popup__container">
-        <button class="popup__close-button button" type="button"></button>
-        <figure class="popup__figure">
-          <img class="popup__image" src="#" alt="" />
-          <figcaption class="popup__figcaption"></figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <template id="card">
-      <article class="elements__item">
-        <img
-          class="elements__trash"
-          src="./images/logo/Trash.svg"
-          alt="Корзина"
-        />
-        <img class="elements__image" src="#" alt="" />
-        <div class="elements__container">
-          <h3 class="elements__title"></h3>
-          <button class="elements__like-button" />
+                        <button
+                            type="submit"
+                            class="popup__submit-button button"
+                        >
+                            Сохранить
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-      </article>
-    </template>
 
-    <script src="script/script.js"></script>
-  </body>
+        <div class="popup popup_image">
+            <div class="popup__container">
+                <button
+                    class="popup__close-button button"
+                    type="button"
+                ></button>
+                <figure class="popup__figure">
+                    <img class="popup__image" src="#" alt="" />
+                    <figcaption class="popup__caption"></figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <template id="card">
+            <article class="elements__item">
+                <img
+                    class="elements__trash"
+                    src="./images/logo/Trash.svg"
+                    alt="Корзина"
+                />
+                <img class="elements__image" src="" alt="" />
+                <div class="elements__container">
+                    <h3 class="elements__title"></h3>
+                    <button class="elements__like-button" />
+                </div>
+            </article>
+        </template>
+
+        <script src="script/script.js"></script>
+    </body>
 </html>
