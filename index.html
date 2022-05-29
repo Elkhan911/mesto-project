@@ -37,25 +37,7 @@
         </div>
       </section>
 
-      <section class="elements">
-        <article class="elements__item">
-          <img class="elements__image" src="images/1.png" alt="картинка" />
-          <div class="elements__container">
-            <h3 class="elements__title">Карачаевск</h3>
-            <button
-              class="elements__like-button elements__like-button_active"
-            />
-          </div>
-        </article>
-
-        <article class="elements__item">
-          <img class="elements__image" src="images/2.png" alt="картинка" />
-          <div class="elements__container">
-            <h3 class="elements__title">Гора Эльбрус</h3>
-            <button class="elements__like-button" />
-          </div>
-        </article>
-      </section>
+      <section class="elements"></section>
     </div>
 
     <footer class="footer">
@@ -65,28 +47,44 @@
     <div class="popup popup_edit">
       <div class="popup__container">
         <button class="popup__close-button button" type="button"></button>
-        <form name="popup-form" class="popup__form form" action="">
+
+        <form name="formEdit" class="popup__form form" action="" novalidate>
           <fieldset class="form__fieldset fieldset">
             <h2 class="popup__title">Редактировать профиль</h2>
+
             <label for="name"></label>
+            <!-- добавил в input name minlength, maxlength, required-->
             <input
+              name="inputName"
+              minlength="2"
+              maxlength="40"
               class="popup__item popup__item-name"
               type="text"
-              id="name"
+              id="idInputName"
               value=""
               placeholder="Имя"
-              required=""
+              required
             />
+            <span class="form__input-error idInputName-error"
+              >Необходимо заполнить данное поле</span
+            >
 
             <label for="description"></label>
+            <!-- добавил в input name minlength, maxlength, required, type-->
             <input
+              type="url"
+              name="inputUrl"
+              minlength="2"
+              maxlength="200"
               class="popup__item popup__item-descrption"
-              type="text"
-              id="description"
+              id="idInputDescription"
               value=""
               placeholder="Описание"
-              required=""
+              required
             />
+            <span class="form__input-error idInputDescription-error"
+              >Необходимо заполнить данное поле</span
+            >
 
             <button type="submit" class="popup__submit-button button">
               Сохранить
@@ -99,7 +97,7 @@
     <div class="popup popup_card">
       <div class="popup__container">
         <button class="popup__close-button button" type="button"></button>
-        <form name="popup-form" class="popup__form form" action="">
+        <form name="formCard" class="popup__form form" action="">
           <fieldset class="form__fieldset fieldset">
             <h2 class="popup__title">Новое место</h2>
             <label for="name"></label>
@@ -139,6 +137,21 @@
         </figure>
       </div>
     </div>
+
+    <template id="card">
+      <article class="elements__item">
+        <img
+          class="elements__trash"
+          src="./images/logo/Trash.svg"
+          alt="Корзина"
+        />
+        <img class="elements__image" src="#" alt="" />
+        <div class="elements__container">
+          <h3 class="elements__title"></h3>
+          <button class="elements__like-button" />
+        </div>
+      </article>
+    </template>
 
     <script src="script/script.js"></script>
   </body>

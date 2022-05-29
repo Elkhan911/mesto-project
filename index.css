@@ -40,3 +40,15 @@
 @import url(blocks/popup/caption/popup__caption.css);
 @import url(/blocks/popup/__figure/popup__figure.css);
 @import url(./blocks/popup/__image/popup__image.css);
+
+.form__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.form__input-error_active {
+  margin-top: 5px;
+  color: #ff0000;
+  font-weight: 400;
+  size: 12px;
+  line-height: 14.52px;
+}
