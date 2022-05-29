@@ -173,33 +173,36 @@ const NewEditForm = document.forms.formEdit;
 const EditInputName = NewEditForm.elements.inputName;
 const EditInputURL = NewEditForm.elements.inputUrl;
 // Выбираем элемент ошибки на основе уникального класса по айди инпута
-const InputError = NewEditForm.querySelector(`.${EditInputName.id}-error`);
 
 // Функция, которая добавляет класс с ошибкой
-const showInputError = (element) => {
+const showInputError = (element, inpError) => {
   element.classList.add("form__input_type_error");
-  InputError.classList.add("form__input-error_active");
+  inpError.textContent = element.validationMessage;
+  inpError.classList.add("form__input-error_active");
 };
 
 // Функция, которая удаляет класс с ошибкой
-const hideInputError = (element) => {
+const hideInputError = (element, inpError) => {
   element.classList.remove("form__input_type_error");
-  InputError.classList.remove("form__input-error_active");
+  inpError.classList.remove("form__input-error_active");
 };
 
 // Функция, которая проверяет валидность поля
-const isValid = () => {
-  if (!EditInputName.validity.valid) {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(EditInputName);
+const isValid = (evt) => {
+  const inp = evt.target;
+  const inpError = NewEditForm.querySelector(`.${inp.id}-error`);
+
+  if (inp.validity.valid) {
+    hideInputError(inp, inpError);
   } else {
-    hideInputError(EditInputName);
+    // Если поле не проходит валидацию, покажем ошибку
+    showInputError(inp, inpError);
   }
 };
 
 // Отменим стандартное поведение по сабмиту
 NewEditForm.addEventListener("submit", function (evt) {
-  preventDefault();
+  evt.preventDefault();
 });
 
-EditInputName.addEventListener("input", isValid);
+NewEditForm.addEventListener("input", isValid);
