@@ -208,11 +208,9 @@ const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add("form__submit_inactive");
   } else {
     // иначе сделай кнопку активной
-    buttonElement.setAttribute("disabled", false);
     buttonElement.classList.remove("form__submit_inactive");
   }
 };
@@ -220,6 +218,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".form__input"));
   const buttonElement = formElement.querySelector(".popup__submit-button");
+
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -247,7 +246,34 @@ const enableValidation = () => {
       evt.preventDefault();
     });
 
+    const closePopup = () => {
+      const popups = Array.from(document.querySelectorAll(".popup"));
+      popups.forEach((popup) => {
+        popup.addEventListener("click", (evt) => {
+          if (
+            evt.target.className === "popup__title" ||
+            evt.target.className === "popup__image"
+          ) {
+            evt.stopPropagation();
+          } else if (!evt.target.className.includes("form")) {
+            //popup.classList.toggle("popup_opened");
+            togglePopup(popup);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", function (evt) {
+        if (evt.key === "Escape") {
+          // console.log("esc");
+          popups.forEach((popup) => {
+            popup.classList.remove("popup_opened");
+          });
+        }
+      });
+    };
+
     setEventListeners(formElement);
+    closePopup();
   });
 };
 
