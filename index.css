@@ -56,3 +56,10 @@
 .button-red {
   color: red;
 }
+
+.form__submit_inactive {
+  background-color: white;
+  color: black;
+
+  border: 1px solid #000000;
+}

@@ -168,41 +168,87 @@ function showImage(name, link) {
 /**********************************************************
  * Вторая проектная работа
  **********************************************************/
-
-const NewEditForm = document.forms.formEdit;
-const EditInputName = NewEditForm.elements.inputName;
-const EditInputURL = NewEditForm.elements.inputUrl;
-// Выбираем элемент ошибки на основе уникального класса по айди инпута
-
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (element, inpError) => {
-  element.classList.add("form__input_type_error");
-  inpError.textContent = element.validationMessage;
-  inpError.classList.add("form__input-error_active");
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
 };
 
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (element, inpError) => {
-  element.classList.remove("form__input_type_error");
-  inpError.classList.remove("form__input-error_active");
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
 };
 
-// Функция, которая проверяет валидность поля
-const isValid = (evt) => {
-  const inp = evt.target;
-  const inpError = NewEditForm.querySelector(`.${inp.id}-error`);
-
-  if (inp.validity.valid) {
-    hideInputError(inp, inpError);
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(inp, inpError);
+    hideInputError(formElement, inputElement);
   }
 };
 
-// Отменим стандартное поведение по сабмиту
-NewEditForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});
+// Функция принимает массив полей
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся функция
+    // hasInvalidInput вернёт true
 
-NewEditForm.addEventListener("input", isValid);
+    return !inputElement.validity.valid;
+  });
+};
+
+// Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.setAttribute("disabled", true);
+    buttonElement.classList.add("form__submit_inactive");
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.setAttribute("disabled", false);
+    buttonElement.classList.remove("form__submit_inactive");
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  const buttonElement = formElement.querySelector(".popup__submit-button");
+  toggleButtonState(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+
+  formElement.addEventListener("keydown", function (evt) {
+    const formList = Array.from(document.querySelectorAll(".form"));
+    const popup = document.querySelector(".popup");
+    formList.forEach((formElement) => {
+      if (evt.key === "Escape") {
+        console.log(evt.key);
+        togglePopup(popup);
+      }
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".form"));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
+
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();

@@ -56,11 +56,11 @@
             <!-- добавил в input name minlength, maxlength, required-->
             <input
               name="inputName"
+              id="idInputName"
               minlength="2"
               maxlength="40"
-              class="popup__item popup__item-name"
+              class="popup__item popup__item-name form__input"
               type="text"
-              id="idInputName"
               value=""
               placeholder="Имя"
               required
@@ -72,12 +72,12 @@
             <label for="description"></label>
             <!-- добавил в input name minlength, maxlength, required, type-->
             <input
-              type="url"
               name="inputUrl"
+              id="idInputDescription"
               minlength="2"
               maxlength="200"
-              class="popup__item popup__item-descrption"
-              id="idInputDescription"
+              class="popup__item popup__item-descrption form__input"
+              type="text"
               value=""
               placeholder="Описание"
               required
@@ -88,9 +88,6 @@
 
             <button type="submit" class="popup__submit-button button">
               Сохранить
-            </button>
-            <button type="submit" class="popup__submit-button button1">
-              Сохранить2
             </button>
           </fieldset>
         </form>
@@ -105,23 +102,31 @@
             <h2 class="popup__title">Новое место</h2>
             <label for="name"></label>
             <input
-              class="popup__item popup__item-name"
+              id="cardName"
+              minlength="2"
+              maxlength="30"
+              class="popup__item popup__item-name form__input"
               type="text"
-              id="name"
               value=""
               placeholder="Название"
               required=""
             />
+            <span class="form__input-error cardName-error"
+              >Необходимо заполнить данное поле</span
+            >
 
             <label for="description"></label>
             <input
-              class="popup__item popup__item-descrption"
-              type="text"
-              id="description"
+              id="cardDescription"
+              class="popup__item popup__item-descrption form__input"
+              type="url"
               value=""
               placeholder="Ссылка на картинку"
               required=""
             />
+            <span class="form__input-error cardDescription-error"
+              >Необходимо заполнить данное поле</span
+            >
 
             <button type="submit" class="popup__submit-button button">
               Сохранить
