@@ -85,18 +85,6 @@ addCardBtn.addEventListener("click", function () {
   togglePopup(addCardPopup);
 });
 
-editPopupClsBtn.addEventListener("click", function () {
-  togglePopup(editPopup);
-});
-
-addCardPopupClsBtn.addEventListener("click", function () {
-  togglePopup(addCardPopup);
-});
-
-imagePopupClsBtn.addEventListener("click", function () {
-  togglePopup(imagePopup);
-});
-
 addCardForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -246,35 +234,35 @@ const enableValidation = () => {
       evt.preventDefault();
     });
 
-    const closePopup = () => {
-      const popups = Array.from(document.querySelectorAll(".popup"));
-      popups.forEach((popup) => {
-        popup.addEventListener("click", (evt) => {
-          if (
-            evt.target.className === "popup__title" ||
-            evt.target.className === "popup__image"
-          ) {
-            evt.stopPropagation();
-          } else if (!evt.target.className.includes("form")) {
-            //popup.classList.toggle("popup_opened");
-            togglePopup(popup);
-          }
-        });
-      });
-
-      document.addEventListener("keydown", function (evt) {
-        if (evt.key === "Escape") {
-          // console.log("esc");
-          popups.forEach((popup) => {
-            popup.classList.remove("popup_opened");
-          });
-        }
-      });
-    };
-
     setEventListeners(formElement);
-    closePopup();
+  });
+};
+
+const closePopup = () => {
+  const popups = Array.from(document.querySelectorAll(".popup"));
+  popups.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (
+        evt.target.className === "popup__title" ||
+        evt.target.className === "popup__image"
+      ) {
+        evt.stopPropagation();
+      } else if (!evt.target.className.includes("form")) {
+        //popup.classList.toggle("popup_opened");
+        togglePopup(popup);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      console.log("esc");
+      popups.forEach((popup) => {
+        popup.classList.remove("popup_opened");
+      });
+    }
   });
 };
 
 enableValidation();
+closePopup();
