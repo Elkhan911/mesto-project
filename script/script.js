@@ -29,6 +29,21 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+/*
+import jordanImage from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg";
+import jamesImage from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg";
+import bryantImages from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg";
+import jordanImages from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg";
+import jamesImages from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg";
+import jasjas from "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg";
+*/
+const whoIsTheGoat = [
+  // меняем исходные пути на переменные
+  { name: "Michael Jordan", image: jordanImage },
+  { name: "Lebron James", link: jamesImage },
+  { name: "Kobe Bryant", link: bryantImage },
+];
+
 const elementsSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card");
 

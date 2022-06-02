@@ -6,14 +6,22 @@
     <meta name="author" content="Elkhan B" />
     <meta name="description" content="туристические места России" />
     <meta name="keywords" content="путешествия по России" />
-    <link rel="stylesheet" href="./index.css" />
+
     <title>mesto</title>
   </head>
 
   <body class="pages">
     <header class="header">
-      <img class="header__logo" src="images/logo/logo.svg" alt="логотип" />
-      <img class="header__logo-line" src="images/logo/Line.svg" alt="логотип" />
+      <img
+        class="header__logo"
+        src="<%=require('../images/logo/logo.svg')%>"
+        alt="логотип"
+      />
+      <img
+        class="header__logo-line"
+        src="<%=require('../images/logo/Line.svg')%>"
+        alt="логотип"
+      />
     </header>
 
     <div class="main">
@@ -22,7 +30,7 @@
           <div class="profile__info">
             <img
               class="profile__avatar"
-              src="images/Avatar.png"
+              src="<%=require('../images/Avatar.png')%>"
               alt="картинка"
             />
             <div class="profile__container">
@@ -150,7 +158,7 @@
       <article class="elements__item">
         <img
           class="elements__trash"
-          src="./images/logo/Trash.svg"
+          src="<%=require('../images/logo/Trash.svg')%>"
           alt="Корзина"
         />
         <img class="elements__image" src="#" alt="" />
@@ -160,7 +168,5 @@
         </div>
       </article>
     </template>
-
-    <script src="script/script.js"></script>
   </body>
 </html>
