@@ -1,5 +1,5 @@
 import "../index.css"; // добавьте импорт главного файла стилей
-
+//include("api.js");
 /**********************************************************
  * VARIABLES
  **********************************************************/
@@ -31,6 +31,21 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+function getCards() {
+  return fetch("https://nomoreparties.co/v1/plus-cohort-10/cards", {
+    headers: {
+      authorization: "9f894776-164e-4b06-b8e7-68af2373c7d3",
+      // "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((cards) => {
+      cards.forEach((card) => {
+        initialCards.append(card.name, card.link);
+      });
+    });
+}
 
 const elementsSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card");
@@ -269,3 +284,4 @@ const closePopup = () => {
 
 enableValidation();
 closePopup();
+getCards();
