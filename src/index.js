@@ -167,10 +167,12 @@ function deleteElement(elem) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", setKeyListener());
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", setKeyListener());
 }
 
 function showImage(name, link) {
@@ -277,14 +279,16 @@ popups.forEach((popup) => {
   });
 });
 
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
-  }
-});
+function setKeyListener() {
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      popups.forEach((popup) => {
+        if (popup.contains("popup_opened")) {
+          closePopup(popup);
+        }
+      });
+    }
+  });
+}
 
 enableValidation(formList);
-
-// closePopup();
