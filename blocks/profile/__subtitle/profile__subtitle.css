@@ -1,13 +1,25 @@
 .profile__subtitle {
+  max-width: 300px;
   margin: 0;
   font-size: 18px;
   line-height: 22px;
+
+  /* Многоточие если много букв */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__subtitle {
+    max-width: 188px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+
+    /* Многоточие если много букв */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
