@@ -32,21 +32,6 @@ const initialCards = [
   },
 ];
 
-function getCards() {
-  return fetch("https://nomoreparties.co/v1/plus-cohort-10/cards", {
-    headers: {
-      authorization: "9f894776-164e-4b06-b8e7-68af2373c7d3",
-      // "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((cards) => {
-      cards.forEach((card) => {
-        initialCards.append(card.name, card.link);
-      });
-    });
-}
-
 const elementsSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card");
 
@@ -60,6 +45,8 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const editPopup = document.querySelector(".popup_edit");
 const addCardPopup = document.querySelector(".popup_card");
 const imagePopup = document.querySelector(".popup_image");
+// переменная для всех попапов
+const popups = Array.from(document.querySelectorAll(".popup"));
 
 const editPopupClsBtn = editPopup.querySelector(".popup__close-button");
 const addCardPopupClsBtn = addCardPopup.querySelector(".popup__close-button");
@@ -72,6 +59,7 @@ const popupImageCaption = imagePopup.querySelector(".popup__caption");
 const addCardForm = addCardPopup.querySelector(".popup__form");
 const addFormName = addCardForm.querySelector(".popup__item-name");
 const addFormlink = addCardForm.querySelector(".popup__item-descrption");
+const formList = Array.from(document.querySelectorAll(".form"));
 
 const editForm = editPopup.querySelector(".popup__form");
 const editFormName = editForm.querySelector(".popup__item-name");
@@ -96,11 +84,11 @@ for (let i = 0; i < initialCards.length; i = i + 1) {
 editBtn.addEventListener("click", function () {
   editFormName.value = profileTitle.textContent;
   editFormDescription.value = profileSubtitle.textContent;
-  togglePopup(editPopup);
+  openPopup(editPopup);
 });
 
 addCardBtn.addEventListener("click", function () {
-  togglePopup(addCardPopup);
+  openPopup(addCardPopup);
 });
 
 addCardForm.addEventListener("submit", function (event) {
@@ -109,7 +97,7 @@ addCardForm.addEventListener("submit", function (event) {
   const newCard = createCard(addFormName.value, addFormlink.value);
 
   elementsSection.prepend(newCard);
-  togglePopup(addCardPopup);
+  closePopup(addCardPopup);
   addCardForm.reset();
 });
 
@@ -119,9 +107,22 @@ editForm.addEventListener("submit", function (event) {
   profileTitle.textContent = editFormName.value;
   profileSubtitle.textContent = editFormDescription.value;
 
-  togglePopup(editPopup);
+  closePopup(editPopup);
 });
 
+editPopupClsBtn.addEventListener("click", function () {
+  closePopup(editPopup);
+});
+
+addCardPopupClsBtn.addEventListener("click", function () {
+  closePopup(addCardPopup);
+});
+
+imagePopupClsBtn.addEventListener("click", function () {
+  closePopup(imagePopup);
+});
+
+imagePopup.addEventListener;
 /**********************************************************
  * FUNCTIONS
  **********************************************************/
@@ -160,15 +161,23 @@ function deleteElement(elem) {
   elem.remove();
 }
 
-function togglePopup(popup) {
-  popup.classList.toggle("popup_opened");
+// function togglePopup(popup) {
+//   popup.classList.add("popup_opened");
+// }
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
 function showImage(name, link) {
   popupImage.src = link;
   popupImage.alt = name;
   popupImageCaption.textContent = name;
-  togglePopup(imagePopup);
+  openPopup(imagePopup);
 }
 
 /**********************************************************
@@ -208,80 +217,74 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+// ПРОБЛЕМА
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
 const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add("form__submit_inactive");
+    buttonElement.setAttribute("disabled", true);
+    console.log("set disabled");
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove("form__submit_inactive");
+    console.log("set enabled");
+    buttonElement.setAttribute("disabled", false);
   }
 };
 
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".form__input"));
   const buttonElement = formElement.querySelector(".popup__submit-button");
-
+  console.log(inputList);
   toggleButtonState(inputList, buttonElement);
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
     });
   });
-
-  formElement.addEventListener("keydown", function (evt) {
-    const formList = Array.from(document.querySelectorAll(".form"));
-    const popup = document.querySelector(".popup");
-    formList.forEach((formElement) => {
-      if (evt.key === "Escape") {
-        console.log(evt.key);
-        togglePopup(popup);
-      }
-    });
-  });
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".form"));
-  formList.forEach((formElement) => {
+const enableValidation = (formLists) => {
+  editFormName.value = profileTitle.textContent;
+  editFormDescription.value = profileSubtitle.textContent;
+
+  formLists.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-
     setEventListeners(formElement);
   });
 };
 
-const closePopup = () => {
-  const popups = Array.from(document.querySelectorAll(".popup"));
-  popups.forEach((popup) => {
-    popup.addEventListener("click", (evt) => {
-      if (
-        evt.target.className === "popup__title" ||
-        evt.target.className === "popup__image"
-      ) {
-        evt.stopPropagation();
-      } else if (!evt.target.className.includes("form")) {
-        //popup.classList.toggle("popup_opened");
-        togglePopup(popup);
-      }
-    });
-  });
+// const closePopup = () => {
+//   const popups = Array.from(document.querySelectorAll(".popup"));
+//
+// };
 
-  document.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      console.log("esc");
-      popups.forEach((popup) => {
-        popup.classList.remove("popup_opened");
-      });
+popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (
+      evt.target.className === "popup__title" ||
+      evt.target.className === "popup__image"
+    ) {
+      evt.stopPropagation();
+    } else if (!evt.target.className.includes("form")) {
+      closePopup(popup);
     }
   });
-};
+});
 
-enableValidation();
-closePopup();
-getCards();
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    popups.forEach((popup) => {
+      closePopup(popup);
+    });
+  }
+});
+
+enableValidation(formList);
+
+// closePopup();
