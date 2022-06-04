@@ -18,7 +18,7 @@ export function createCard(name, link) {
   });
 
   newCardTrashBtn.addEventListener("click", function () {
-    deleteElement(newCardTrashBtn.closest(".elements__item"));
+    modal.deleteElement(newCardTrashBtn.closest(".elements__item"));
   });
 
   newCardImage.addEventListener("click", function () {
