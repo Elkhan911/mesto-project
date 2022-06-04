@@ -1,9 +1,11 @@
 .form__fieldset {
   display: flex;
   flex-direction: column;
-  padding: 36px;
+  padding: 36px 60px 36px 36px;
   margin: 0;
   border: 0;
+  position: relative;
+  /* realative? */
 }
 
 @media screen and (max-width: 580px) {
