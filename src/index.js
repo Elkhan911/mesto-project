@@ -32,6 +32,7 @@ import {
   editForm,
   editFormName,
   editFormDescription,
+  submitButton,
 } from "./constants.js";
 
 // adding cards from initialCards array:
@@ -71,6 +72,8 @@ editForm.addEventListener("submit", function (event) {
 
   profileTitle.textContent = editFormName.value;
   profileSubtitle.textContent = editFormDescription.value;
+
+  validate.disabledSaveButton(submitButton);
 
   closePopup(editPopup);
 });

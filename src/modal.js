@@ -18,10 +18,6 @@ export function closePopup(popup) {
   document.removeEventListener("keydown", setKeyListener);
 }
 
-
-
-
-
 export function сlosePopupOnOverloy() {
   constants.popups.forEach((popup) => {
     popup.addEventListener("click", (evt) => {

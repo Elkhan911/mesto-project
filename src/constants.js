@@ -63,3 +63,5 @@ export const editFormName = editForm.querySelector(".popup__item-name");
 export const editFormDescription = editForm.querySelector(
   ".popup__item-descrption"
 );
+
+export const submitButton = document.querySelector("popup__submit-button");

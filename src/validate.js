@@ -21,12 +21,19 @@ export const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
+    buttonElement.classList.add("button__inactive");
     buttonElement.disabled = true;
   } else {
     // иначе сделай кнопку активной
+    buttonElement.classList.remove("button__inactive");
     buttonElement.disabled = false;
   }
 };
+
+export function disabledSaveButton(saveButton) {
+  saveButton.classList.add(validationSettings.inactiveButtonClass);
+  saveButton.disabled = true;
+}
 
 export const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -74,5 +81,3 @@ export const enableValidation = (formLists) => {
     setEventListeners(formElement);
   });
 };
-
-// ""
