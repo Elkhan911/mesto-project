@@ -6,4 +6,11 @@
   margin: 0;
   padding: 0;
   cursor: pointer;
+  display: block;
+  overflow: hidden;
+}
+
+.elements__image:after {
+  content: "(url: " attr(src) ")";
+  display: block;
 }

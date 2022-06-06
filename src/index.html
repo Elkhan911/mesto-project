@@ -75,8 +75,7 @@
             />
             <span
               class="form__input-error idInputName-error form__input-error-name"
-              >Необходимо заполнить данное поле</span
-            >
+            ></span>
 
             <label for="description"></label>
             <!-- добавил в input name minlength, maxlength, required, type-->
@@ -93,10 +92,13 @@
             />
             <span
               class="form__input-error idInputDescription-error form__input-error-description"
-              >Необходимо заполнить данное поле</span
-            >
+            ></span>
 
-            <button type="submit" id="profileSaveButton" class="popup__submit-button button">
+            <button
+              type="submit"
+              id="profileSaveButton"
+              class="popup__submit-button button"
+            >
               Сохранить
             </button>
           </fieldset>
@@ -121,9 +123,7 @@
               placeholder="Название"
               required=""
             />
-            <span class="form__input-error cardName-error"
-              >Необходимо заполнить данное поле</span
-            >
+            <span class="form__input-error cardName-error"></span>
 
             <label for="description"></label>
             <input
@@ -134,9 +134,7 @@
               placeholder="Ссылка на картинку"
               required=""
             />
-            <span class="form__input-error cardDescription-error"
-              >Необходимо заполнить данное поле</span
-            >
+            <span class="form__input-error cardDescription-error"></span>
 
             <button
               type="submit"
@@ -167,7 +165,7 @@
           src="<%=require('../images/logo/Trash.svg')%>"
           alt="Корзина"
         />
-        <img class="elements__image" src="#" alt="" min-height="281" />
+        <img class="elements__image" src="#" alt="" />
         <div class="elements__container">
           <h3 class="elements__title"></h3>
           <button class="elements__like-button" />
