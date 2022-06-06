@@ -1,6 +1,11 @@
 import "../index.css"; // добавьте импорт главного файла стилей
 
-import { setKeyListener, openPopup, closePopup } from "./modal";
+import {
+  setKeyListener,
+  openPopup,
+  closePopup,
+  сlosePopupOnOverloy,
+} from "./modal";
 import { createCard } from "./card.js";
 import * as validate from "./validate.js";
 import {
@@ -82,19 +87,7 @@ imagePopupClsBtn.addEventListener("click", function () {
   closePopup(imagePopup);
 });
 
-// imagePopup.addEventListener;
-
-popups.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
-    if (
-      evt.target.className === "popup__title" ||
-      evt.target.className === "popup__image"
-    ) {
-      evt.stopPropagation();
-    } else if (!evt.target.className.includes("form")) {
-      closePopup(popup);
-    }
-  });
-});
+//добавил функцию из модал, чтоб закрывалось при клике на оверлей
+сlosePopupOnOverloy();
 
 validate.enableValidation(formList);

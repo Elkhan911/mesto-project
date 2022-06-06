@@ -28,15 +28,25 @@ export const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
+export const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+};
+
+export const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+};
+
 export const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    modal.showInputError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage
-    );
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    modal.hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement);
   }
 };
 

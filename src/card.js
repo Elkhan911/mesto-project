@@ -2,6 +2,21 @@ import * as constants from "./constants.js";
 import * as modal from "./modal.js";
 // Imports
 
+export function toggleLike(button) {
+  button.classList.toggle("elements__like-button_active");
+}
+
+export function showImage(name, link) {
+  constants.popupImage.src = link;
+  constants.popupImage.alt = name;
+  constants.popupImageCaption.textContent = name;
+  modal.openPopup(constants.imagePopup);
+}
+
+export function deleteElement(elem) {
+  elem.remove();
+}
+
 export function createCard(name, link) {
   const newCard = constants.cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
@@ -18,11 +33,11 @@ export function createCard(name, link) {
   });
 
   newCardTrashBtn.addEventListener("click", function () {
-    modal.deleteElement(newCardTrashBtn.closest(".elements__item"));
+    deleteElement(newCardTrashBtn.closest(".elements__item"));
   });
 
   newCardImage.addEventListener("click", function () {
-    modal.showImage(name, link);
+    showImage(name, link);
   });
 
   return newCard;
