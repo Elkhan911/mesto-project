@@ -33,6 +33,8 @@ import {
   editFormName,
   editFormDescription,
   submitButton,
+  profileSaveButton,
+  cardSaveButton,
 } from "./constants.js";
 
 // adding cards from initialCards array:
@@ -63,6 +65,7 @@ addCardForm.addEventListener("submit", function (event) {
   const newCard = createCard(addFormName.value, addFormlink.value);
 
   elementsSection.prepend(newCard);
+
   closePopup(addCardPopup);
   addCardForm.reset();
 });
@@ -73,7 +76,8 @@ editForm.addEventListener("submit", function (event) {
   profileTitle.textContent = editFormName.value;
   profileSubtitle.textContent = editFormDescription.value;
 
-  validate.disabledSaveButton(submitButton);
+  profileSaveButton.classList.add("button__inactive");
+  profileSaveButton.disabled = true;
 
   closePopup(editPopup);
 });

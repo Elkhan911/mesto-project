@@ -64,4 +64,5 @@ export const editFormDescription = editForm.querySelector(
   ".popup__item-descrption"
 );
 
-export const submitButton = document.querySelector("popup__submit-button");
+export const profileSaveButton = document.querySelector("#profileSaveButton");
+export const cardSaveButton = document.querySelector("#cardSaveButton");

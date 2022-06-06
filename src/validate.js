@@ -30,6 +30,7 @@ export const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
+// функция для возврата неактивной кнопки
 export function disabledSaveButton(saveButton) {
   saveButton.classList.add(validationSettings.inactiveButtonClass);
   saveButton.disabled = true;
