@@ -44,7 +44,7 @@ export function setCards() {
           console.log("My cards");
           cardView = cardjs.createCard(cardName, cardLink, cardLikeCount, true);
         } else {
-          cardView = card.js.createCard(
+          cardView = cardjs.createCard(
             cardName,
             cardLink,
             cardLikeCount,
@@ -52,11 +52,7 @@ export function setCards() {
           );
         }
 
-        console.log("My card");
-        cardView = cardjs.createCard(cardName, cardLink, cardLikeCount);
-
         constants.elementsSection.append(cardView);
-        //constants.initialCards.push(card);
       });
     });
 }

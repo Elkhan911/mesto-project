@@ -17,7 +17,7 @@ export function deleteElement(elem) {
   elem.remove();
 }
 
-export function createCard(name, link, likeCount) {
+export function createCard(name, link, likeCount, isMyCard) {
   const newCard = constants.cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
   const newCardTitle = newCard.querySelector(".elements__title");
@@ -29,6 +29,11 @@ export function createCard(name, link, likeCount) {
   newCardImage.alt = name;
   newCardTitle.textContent = name;
   newCardLikeCount.textContent = likeCount;
+
+  if (!isMyCard) {
+    newCardTrashBtn.src = "#";
+    newCardImage.alt = "";
+  }
 
   newCardLikeBtn.addEventListener("click", function () {
     toggleLike(newCardLikeBtn);
