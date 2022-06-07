@@ -1,5 +1,5 @@
-import * as constants from "./constants.js";
 // Imports
+import * as constants from "./constants";
 
 export function setKeyListener(evt) {
   if (evt.key === "Escape") {

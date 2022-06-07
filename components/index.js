@@ -6,6 +6,7 @@ import {
   closePopup,
   сlosePopupOnOverloy,
 } from "./modal";
+
 import { createCard } from "./card.js";
 import * as validate from "./validate.js";
 import {

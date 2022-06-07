@@ -1,6 +1,6 @@
+// Imports
 import * as constants from "./constants.js";
 import * as modal from "./modal.js";
-// Imports
 
 export function toggleLike(button) {
   button.classList.toggle("elements__like-button_active");

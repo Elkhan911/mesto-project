@@ -1,5 +1,4 @@
 import * as constants from "./constants.js";
-import * as modal from "./modal.js";
 // Imports
 
 // Функция принимает массив полей
