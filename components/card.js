@@ -17,16 +17,18 @@ export function deleteElement(elem) {
   elem.remove();
 }
 
-export function createCard(name, link) {
+export function createCard(name, link, likeCount) {
   const newCard = constants.cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
   const newCardTitle = newCard.querySelector(".elements__title");
   const newCardLikeBtn = newCard.querySelector(".elements__like-button");
   const newCardTrashBtn = newCard.querySelector(".elements__trash");
+  const newCardLikeCount = newCard.querySelector(".elements_like-counter");
 
   newCardImage.src = link;
   newCardImage.alt = name;
   newCardTitle.textContent = name;
+  newCardLikeCount.textContent = likeCount;
 
   newCardLikeBtn.addEventListener("click", function () {
     toggleLike(newCardLikeBtn);

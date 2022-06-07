@@ -42,3 +42,9 @@
 @import url(../blocks/form/__input-error-name/form__input-error-name.css);
 @import url(../blocks/form/__input-error-description/form__input-error-description.css);
 @import url(../blocks/button/__inactive/button__inactive.css);
+
+.elements_like-counter {
+  color: white;
+  margin-left: 250px;
+  font-style: bold;
+}

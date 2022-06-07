@@ -1,5 +1,7 @@
 import "../src/index.css"; // добавьте импорт главного файла стилей
 
+import * as api from "./api.js";
+
 import {
   setKeyListener,
   openPopup,
@@ -8,7 +10,9 @@ import {
 } from "./modal";
 
 import { createCard } from "./card.js";
+
 import * as validate from "./validate.js";
+
 import {
   initialCards,
   elementsSection,
@@ -67,6 +71,8 @@ addCardForm.addEventListener("submit", function (event) {
 
   elementsSection.prepend(newCard);
 
+  api.sentCard(addFormName.value, addFormlink.value);
+
   closePopup(addCardPopup);
   addCardForm.reset();
 });
@@ -76,6 +82,8 @@ editForm.addEventListener("submit", function (event) {
 
   profileTitle.textContent = editFormName.value;
   profileSubtitle.textContent = editFormDescription.value;
+
+  api.updateProfile(profileTitle.textContent, profileSubtitle.textContent);
 
   profileSaveButton.classList.add("button__inactive");
   profileSaveButton.disabled = true;
@@ -94,6 +102,9 @@ addCardPopupClsBtn.addEventListener("click", function () {
 imagePopupClsBtn.addEventListener("click", function () {
   closePopup(imagePopup);
 });
+
+api.setUser();
+api.setCards();
 
 //добавил функцию из модал, чтоб закрывалось при клике на оверлей
 сlosePopupOnOverloy();
