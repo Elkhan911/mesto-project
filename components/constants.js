@@ -1,7 +1,3 @@
-/* cards */
-export const initialCards = [];
-export const userId = "";
-
 export const elementsSection = document.querySelector(".elements");
 export const cardTemplate = document.querySelector("#card");
 

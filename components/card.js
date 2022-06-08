@@ -1,6 +1,7 @@
 // Imports
 import * as constants from "./constants.js";
 import * as modal from "./modal.js";
+import * as api from "./api.js";
 
 export function toggleLike(button) {
   button.classList.toggle("elements__like-button_active");
@@ -17,7 +18,7 @@ export function deleteElement(elem) {
   elem.remove();
 }
 
-export function createCard(name, link, likeCount, isMyCard) {
+export function createCard(cardId, name, link, likeCount, isMyCard) {
   const newCard = constants.cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
   const newCardTitle = newCard.querySelector(".elements__title");
@@ -32,15 +33,22 @@ export function createCard(name, link, likeCount, isMyCard) {
 
   if (!isMyCard) {
     newCardTrashBtn.src = "#";
-    newCardImage.alt = "";
   }
-
+  newCardImage.alt = `картинка ` + name;
   newCardLikeBtn.addEventListener("click", function () {
     toggleLike(newCardLikeBtn);
   });
 
   newCardTrashBtn.addEventListener("click", function () {
-    deleteElement(newCardTrashBtn.closest(".elements__item"));
+    api
+      .deleteCard(cardId)
+      .then((user) => {
+        deleteElement(newCardTrashBtn.closest(".elements__item"));
+      })
+      .catch((err) => {
+        console.log(err); // "Что-то пошло не так: ..."
+      })
+      .finally(() => {});
   });
 
   newCardImage.addEventListener("click", function () {
