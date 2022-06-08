@@ -12,6 +12,8 @@ export const profileAvatar = document.querySelector(".profile__avatar");
 export const editPopup = document.querySelector(".popup_edit");
 export const addCardPopup = document.querySelector(".popup_card");
 export const imagePopup = document.querySelector(".popup_image");
+export const avatarPopup = document.querySelector(".popup_avatar");
+
 // переменная для всех попапов
 export const popups = Array.from(document.querySelectorAll(".popup"));
 export const editPopupClsBtn = editPopup.querySelector(".popup__close-button");
@@ -35,6 +37,11 @@ export const editForm = editPopup.querySelector(".popup__form");
 export const editFormName = editForm.querySelector(".popup__item-name");
 export const editFormDescription = editForm.querySelector(
   ".popup__item-descrption"
+);
+
+export const editFormAvatar = avatarPopup.querySelector(".popup__form");
+export const editFormAvatarUrl = editFormAvatar.querySelector(
+  ".popup__item-avatar"
 );
 
 export const profileSaveButton = document.querySelector("#profileSaveButton");

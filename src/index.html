@@ -154,6 +154,34 @@
       </div>
     </div>
 
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <button class="popup__close-button button" type="button"></button>
+        <form name="formCard" class="popup__form form" action="" novalidate>
+          <fieldset class="form__fieldset fieldset">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <label for="description"></label>
+            <input
+              class="popup__item popup__item-avatar form__input"
+              type="url"
+              id="urlToAvatar"
+              value=""
+              placeholder="Ссылка на картинку"
+              required=""
+            />
+            <span class="form__input-error urlToAvatar-error"></span>
+
+            <button
+              type="submit"
+              class="popup__submit-button button form__submit"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <template id="card">
       <article class="elements__item">
         <img

@@ -40,12 +40,17 @@ import {
   profileSaveButton,
   cardSaveButton,
   profileAvatar,
-  // userId,
+  avatarPopup,
+  editFormAvatar,
+  editFormAvatarUrl,
 } from "./constants.js";
 
 /**********************************************************
  * ADDING LISTENERS
  **********************************************************/
+profileAvatar.addEventListener("click", function () {
+  openPopup(avatarPopup);
+});
 
 editBtn.addEventListener("click", function () {
   editFormName.value = profileTitle.textContent;
@@ -68,6 +73,19 @@ addCardForm.addEventListener("submit", function (event) {
       elementsSection.prepend(newCard);
       closePopup(addCardPopup);
       addCardForm.reset();
+    })
+    .catch((err) => {
+      console.log(err); // "Что-то пошло не так: ..."
+    });
+});
+
+editFormAvatar.addEventListener("submit", function (event) {
+  event.preventDefault();
+  api
+    .changeAvatar(editFormAvatarUrl.value)
+    .then(() => {
+      profileAvatar.src = editFormAvatarUrl.value;
+      closePopup(avatarPopup);
     })
     .catch((err) => {
       console.log(err); // "Что-то пошло не так: ..."
@@ -129,16 +147,27 @@ api
       const cardId = card._id;
       const cardName = card.name;
       const cardLink = card.link;
+      const likes = card.likes;
       const cardLikeCount = card.likes.length;
       console.log(card);
 
       let cardView;
       let isMyCard = false;
+      let hasMyLike = false;
+      hasMyLike = isCardHasMyLike(likes);
+
       if (card.owner._id === userId) {
         isMyCard = true;
       }
 
-      cardView = createCard(cardId, cardName, cardLink, cardLikeCount, isMyCard);
+      cardView = createCard(
+        cardId,
+        cardName,
+        cardLink,
+        cardLikeCount,
+        isMyCard,
+        hasMyLike
+      );
 
       elementsSection.append(cardView);
     });
@@ -147,6 +176,19 @@ api
     console.log(err); // "Что-то пошло не так: ..."
   })
   .finally(() => {});
+
+function isCardHasMyLike(likes) {
+  console.log(likes);
+  let hasMyLike = false;
+
+  likes.forEach((like) => {
+    if (like._id === userId) {
+      console.log("This card has my like");
+      hasMyLike = true;
+    }
+  });
+  return hasMyLike;
+}
 
 /*
 Promise.all([api.setUser(), api.setCards()])

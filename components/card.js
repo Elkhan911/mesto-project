@@ -3,8 +3,26 @@ import * as constants from "./constants.js";
 import * as modal from "./modal.js";
 import * as api from "./api.js";
 
-export function toggleLike(button) {
+export function toggleLike(cardId, button, likeCountElement) {
   button.classList.toggle("elements__like-button_active");
+  if (button.className.includes("elements__like-button_active")) {
+    api
+      .addLike(cardId, likeCountElement)
+      .then((res) => res.json())
+      .then((card) => {
+        console.log(card);
+        likeCountElement.textContent = card.likes.length;
+      });
+    console.log("Like");
+  } else {
+    api
+      .removeLike(cardId, likeCountElement)
+      .then((res) => res.json())
+      .then((card) => {
+        likeCountElement.textContent = card.likes.length;
+      });
+    console.log("DisLike");
+  }
 }
 
 export function showImage(name, link) {
@@ -18,7 +36,7 @@ export function deleteElement(elem) {
   elem.remove();
 }
 
-export function createCard(cardId, name, link, likeCount, isMyCard) {
+export function createCard(cardId, name, link, likeCount, isMyCard, hasMyLike) {
   const newCard = constants.cardTemplate.content.cloneNode(true);
   const newCardImage = newCard.querySelector(".elements__image");
   const newCardTitle = newCard.querySelector(".elements__title");
@@ -31,12 +49,14 @@ export function createCard(cardId, name, link, likeCount, isMyCard) {
   newCardTitle.textContent = name;
   newCardLikeCount.textContent = likeCount;
 
+  if (hasMyLike) newCardLikeBtn.classList.add("elements__like-button_active");
+
   if (!isMyCard) {
     newCardTrashBtn.src = "#";
   }
   newCardImage.alt = `картинка ` + name;
   newCardLikeBtn.addEventListener("click", function () {
-    toggleLike(newCardLikeBtn);
+    toggleLike(cardId, newCardLikeBtn, newCardLikeCount);
   });
 
   newCardTrashBtn.addEventListener("click", function () {
