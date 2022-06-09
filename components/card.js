@@ -8,7 +8,12 @@ export function toggleLike(cardId, button, likeCountElement) {
   if (button.className.includes("elements__like-button_active")) {
     api
       .addLike(cardId, likeCountElement)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
       .then((card) => {
         console.log(card);
         likeCountElement.textContent = card.likes.length;
@@ -17,7 +22,12 @@ export function toggleLike(cardId, button, likeCountElement) {
   } else {
     api
       .removeLike(cardId, likeCountElement)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
       .then((card) => {
         likeCountElement.textContent = card.likes.length;
       });
@@ -62,7 +72,14 @@ export function createCard(cardId, name, link, likeCount, isMyCard, hasMyLike) {
   newCardTrashBtn.addEventListener("click", function () {
     api
       .deleteCard(cardId)
-      .then((user) => {
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then(() => {
         deleteElement(newCardTrashBtn.closest(".elements__item"));
       })
       .catch((err) => {

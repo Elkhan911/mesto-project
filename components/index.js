@@ -43,6 +43,7 @@ import {
   avatarPopup,
   editFormAvatar,
   editFormAvatarUrl,
+  config,
 } from "./constants.js";
 
 /**********************************************************
@@ -69,6 +70,13 @@ addCardForm.addEventListener("submit", function (event) {
 
   api
     .sentCard(addFormName.value, addFormlink.value)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // если ошибка, отклоняем промис
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then(() => {
       elementsSection.prepend(newCard);
       closePopup(addCardPopup);
@@ -83,6 +91,12 @@ editFormAvatar.addEventListener("submit", function (event) {
   event.preventDefault();
   api
     .changeAvatar(editFormAvatarUrl.value)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+    })
     .then(() => {
       profileAvatar.src = editFormAvatarUrl.value;
       closePopup(avatarPopup);
@@ -100,10 +114,15 @@ editForm.addEventListener("submit", function (event) {
 
   api
     .updateProfile(profileTitle.textContent, profileSubtitle.textContent)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+    })
     .then(() => {
       profileSaveButton.classList.add("button__inactive");
       profileSaveButton.disabled = true;
-
       closePopup(editPopup);
     })
     .catch((err) => {
@@ -210,17 +229,14 @@ Promise.all([api.setUser(), api.setCards()])
       if (card.owner._id === userId) {
         isMyCard = true;
       }
-
       cardView = createCard(cardName, cardLink, cardLikeCount, isMyCard);
-
       elementsSection.append(cardView);
     });
   })
   .catch((err) => {
     // тут ловим ошибку
   });
-  */
-
+*/
 //добавил функцию из модал, чтоб закрывалось при клике на оверлей
 сlosePopupOnOverloy();
 
