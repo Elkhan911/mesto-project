@@ -7,6 +7,9 @@ export const addCardBtn = document.querySelector(".profile__add-button");
 export const profileTitle = document.querySelector(".profile__title");
 export const profileSubtitle = document.querySelector(".profile__subtitle");
 export const profileAvatar = document.querySelector(".profile__avatar");
+export const profileAvatarEdit = document.querySelector(
+  ".profile__avatar-edit"
+);
 
 /* popups */
 export const editPopup = document.querySelector(".popup_edit");

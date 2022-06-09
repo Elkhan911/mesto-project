@@ -44,12 +44,13 @@ import {
   editFormAvatar,
   editFormAvatarUrl,
   config,
+  profileAvatarEdit,
 } from "./constants.js";
 
 /**********************************************************
  * ADDING LISTENERS
  **********************************************************/
-profileAvatar.addEventListener("click", function () {
+profileAvatarEdit.addEventListener("click", function () {
   openPopup(avatarPopup);
 });
 
@@ -66,8 +67,7 @@ addCardBtn.addEventListener("click", function () {
 addCardForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const newCard = createCard(addFormName.value, addFormlink.value);
-
+  const newCard = createCard("", addFormName.value, addFormlink.value);
   api
     .sentCard(addFormName.value, addFormlink.value)
     .then((res) => {

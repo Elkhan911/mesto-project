@@ -4,8 +4,7 @@ import * as modal from "./modal.js";
 import * as api from "./api.js";
 
 export function toggleLike(cardId, button, likeCountElement) {
-  button.classList.toggle("elements__like-button_active");
-  if (button.className.includes("elements__like-button_active")) {
+  if (!button.className.includes("elements__like-button_active")) {
     api
       .addLike(cardId, likeCountElement)
       .then((res) => {
@@ -15,6 +14,7 @@ export function toggleLike(cardId, button, likeCountElement) {
         return Promise.reject(`Ошибка ${res.status}`);
       })
       .then((card) => {
+        button.classList.toggle("elements__like-button_active");
         console.log(card);
         likeCountElement.textContent = card.likes.length;
       });
@@ -29,6 +29,7 @@ export function toggleLike(cardId, button, likeCountElement) {
         return Promise.reject(`Ошибка ${res.status}`);
       })
       .then((card) => {
+        button.classList.toggle("elements__like-button_active");
         likeCountElement.textContent = card.likes.length;
       });
     console.log("DisLike");
@@ -52,7 +53,7 @@ export function createCard(cardId, name, link, likeCount, isMyCard, hasMyLike) {
   const newCardTitle = newCard.querySelector(".elements__title");
   const newCardLikeBtn = newCard.querySelector(".elements__like-button");
   const newCardTrashBtn = newCard.querySelector(".elements__trash");
-  const newCardLikeCount = newCard.querySelector(".elements_like-counter");
+  const newCardLikeCount = newCard.querySelector(".elements__like-counter");
 
   newCardImage.src = link;
   newCardImage.alt = name;

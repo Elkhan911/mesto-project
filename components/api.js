@@ -31,8 +31,6 @@ export function updateProfile(name, about) {
 }
 
 export function sentCard(name, link) {
-  console.log(name);
-  console.log(link);
   return fetch(baseUrl + "cards", {
     method: "POST",
     headers,

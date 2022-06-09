@@ -4,9 +4,6 @@
   height: 200px;
   border-radius: 100px;
 }
-.profile__avatar:hover {
-  opacity: 50%;
-}
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__avatar {

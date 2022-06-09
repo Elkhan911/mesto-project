@@ -28,7 +28,11 @@
       <section class="profile">
         <div class="profile__info-container">
           <div class="profile__info">
-            <img class="profile__avatar" src="#" alt="картинка" />
+            <div class="profile__avatar-container">
+              <img alt="Аватар Пользователя" class="profile__avatar" />
+              <button class="profile__avatar-edit" type="button"></button>
+            </div>
+
             <div class="profile__container">
               <div class="profile__text-container">
                 <h1 class="profile__title"></h1>
@@ -190,11 +194,12 @@
           alt=""
         />
         <img class="elements__image" src="#" alt="" />
+
         <div class="elements__container">
           <h3 class="elements__title"></h3>
           <button class="elements__like-button" />
+          <span class="elements__like-counter"></span>
         </div>
-        <span class="elements_like-counter"></span>
       </article>
     </template>
   </body>
