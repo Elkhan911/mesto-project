@@ -13,7 +13,6 @@ export const hasInvalidInput = (inputList) => {
   });
 };
 
-// ПРОБЛЕМА
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
 export const toggleButtonState = (inputList, buttonElement) => {

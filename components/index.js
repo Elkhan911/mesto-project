@@ -72,13 +72,7 @@ addCardForm.addEventListener("submit", function (event) {
 
   api
     .sentCard(addFormName.value, addFormlink.value)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // если ошибка, отклоняем промис
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(api._checkResponce)
     .then((card) => {
       const newCard = createCard(
         card._id,
@@ -105,12 +99,7 @@ editFormAvatar.addEventListener("submit", function (event) {
   renderLoading(true, avatarSaveButton);
   api
     .changeAvatar(editFormAvatarUrl.value)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}`);
-    })
+    .then(api._checkResponce)
     .then(() => {
       profileAvatar.src = editFormAvatarUrl.value;
       closePopup(avatarPopup);
@@ -129,12 +118,7 @@ editForm.addEventListener("submit", function (event) {
 
   api
     .updateProfile(profileTitle.textContent, profileSubtitle.textContent)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}`);
-    })
+    .then(api._checkResponce)
     .then(() => {
       profileTitle.textContent = editFormName.value;
       profileSubtitle.textContent = editFormDescription.value;
@@ -152,71 +136,6 @@ editForm.addEventListener("submit", function (event) {
 
 let userId = "";
 
-/*
-api
-  .setUser()
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-  })
-  .then((user) => {
-    console.log(user);
-    profileTitle.textContent = user.name;
-    profileSubtitle.textContent = user.about;
-    profileAvatar.src = user.avatar;
-    userId = user._id;
-    console.log(user._id);
-  })
-  .catch((err) => {
-    console.log(err); // "Что-то пошло не так: ..."
-  })
-  .finally(() => {});
-
-api
-  .setCards()
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-  })
-  .then((cards) => {
-    cards.forEach((card) => {
-      const cardId = card._id;
-      const cardName = card.name;
-      const cardLink = card.link;
-      const likes = card.likes;
-      const cardLikeCount = card.likes.length;
-      console.log(card);
-
-      let cardView;
-      let isMyCard = false;
-      let hasMyLike = false;
-      hasMyLike = isCardHasMyLike(likes);
-
-      if (card.owner._id === userId) {
-        isMyCard = true;
-      }
-
-      cardView = createCard(
-        cardId,
-        cardName,
-        cardLink,
-        cardLikeCount,
-        isMyCard,
-        hasMyLike
-      );
-
-      elementsSection.append(cardView);
-    });
-  })
-  .catch((err) => {
-    console.log(err); // "Что-то пошло не так: ..."
-  })
-  .finally(() => {});
-*/
 function isCardHasMyLike(likes) {
   console.log(likes);
   let hasMyLike = false;
@@ -242,25 +161,37 @@ Promise.all([api.setUser(), api.setCards()])
     userId = user._id;
     console.log("Id = " + userId);
 
-    const initialCards = [];
     // и тут отрисовка карточек
     cards.forEach((card) => {
       const cardId = card._id;
       const cardName = card.name;
       const cardLink = card.link;
-      const cardLikeCount = card.likes.length;
+      const likes = card.likes;
+      const cardLikesCount = card.likes.length;
       console.log(card);
+      //console.log(likes[0]._id);
 
-      let cardView;
-      if (card.owner._id != userId) {
+      var cardView;
+      let isMyCard = false;
+      let hasMyLike = false;
+
+      hasMyLike = isCardHasMyLike(likes);
+
+      if (card.owner._id === userId) {
+        isMyCard = true;
         console.log("My card");
-        cardView = createCard(cardId, cardName, cardLink, cardLikeCount, true);
-      } else {
-        cardView = createCard(cardId, cardName, cardLink, cardLikeCount, false);
       }
 
+      cardView = createCard(
+        cardId,
+        cardName,
+        cardLink,
+        cardLikesCount,
+        isMyCard,
+        hasMyLike
+      );
+
       elementsSection.append(cardView);
-      initialCards.push(card);
     });
   })
   .catch((err) => {

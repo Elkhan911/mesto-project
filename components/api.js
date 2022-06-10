@@ -73,3 +73,12 @@ export function changeAvatar(newLink) {
     }),
   });
 }
+
+export function _checkResponce(res) {
+  if (res.ok) {
+    console.log("Amazing");
+    return res.json();
+  }
+  console.log("Bad");
+  return Promise.reject(`Ошибка ${res.status}`);
+};
