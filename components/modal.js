@@ -29,3 +29,14 @@ export function сlosePopupOnOverloy() {
     });
   });
 }
+
+export function renderLoading(isLoad, element) {
+  console.log(element);
+  if (isLoad) {
+    console.log("True");
+    element.textContent = "Сохранение...";
+  } else {
+    console.log("false");
+    element.textContent = "Сохранить";
+  }
+}

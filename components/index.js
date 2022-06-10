@@ -7,6 +7,7 @@ import {
   openPopup,
   closePopup,
   сlosePopupOnOverloy,
+  renderLoading,
 } from "./modal";
 
 import { createCard } from "./card.js";
@@ -45,6 +46,7 @@ import {
   editFormAvatarUrl,
   config,
   profileAvatarEdit,
+  avatarSaveButton,
 } from "./constants.js";
 
 /**********************************************************
@@ -66,8 +68,8 @@ addCardBtn.addEventListener("click", function () {
 
 addCardForm.addEventListener("submit", function (event) {
   event.preventDefault();
+  renderLoading(true, cardSaveButton);
 
-  const newCard = createCard("", addFormName.value, addFormlink.value);
   api
     .sentCard(addFormName.value, addFormlink.value)
     .then((res) => {
@@ -77,18 +79,30 @@ addCardForm.addEventListener("submit", function (event) {
       // если ошибка, отклоняем промис
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-    .then(() => {
+    .then((card) => {
+      const newCard = createCard(
+        card._id,
+        addFormName.value,
+        addFormlink.value,
+        card.likes.length,
+        true,
+        false
+      );
       elementsSection.prepend(newCard);
       closePopup(addCardPopup);
       addCardForm.reset();
     })
     .catch((err) => {
       console.log(err); // "Что-то пошло не так: ..."
+    })
+    .finally(() => {
+      renderLoading(false, cardSaveButton);
     });
 });
 
 editFormAvatar.addEventListener("submit", function (event) {
   event.preventDefault();
+  renderLoading(true, avatarSaveButton);
   api
     .changeAvatar(editFormAvatarUrl.value)
     .then((res) => {
@@ -103,12 +117,15 @@ editFormAvatar.addEventListener("submit", function (event) {
     })
     .catch((err) => {
       console.log(err); // "Что-то пошло не так: ..."
+    })
+    .finally(() => {
+      renderLoading(false, avatarSaveButton);
     });
 });
 
 editForm.addEventListener("submit", function (event) {
   event.preventDefault();
-
+  renderLoading(true, profileSaveButton);
   profileTitle.textContent = editFormName.value;
   profileSubtitle.textContent = editFormDescription.value;
 
@@ -127,6 +144,9 @@ editForm.addEventListener("submit", function (event) {
     })
     .catch((err) => {
       console.log(err); // "Что-то пошло не так: ..."
+    })
+    .finally(() => {
+      renderLoading(false, profileSaveButton);
     });
 });
 

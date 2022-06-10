@@ -45,6 +45,7 @@ export function showImage(name, link) {
 
 export function deleteElement(elem) {
   elem.remove();
+  ``;
 }
 
 export function createCard(cardId, name, link, likeCount, isMyCard, hasMyLike) {
@@ -66,6 +67,7 @@ export function createCard(cardId, name, link, likeCount, isMyCard, hasMyLike) {
     newCardTrashBtn.src = "#";
   }
   newCardImage.alt = `картинка ` + name;
+
   newCardLikeBtn.addEventListener("click", function () {
     toggleLike(cardId, newCardLikeBtn, newCardLikeCount);
   });

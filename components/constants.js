@@ -49,6 +49,7 @@ export const editFormAvatarUrl = editFormAvatar.querySelector(
 
 export const profileSaveButton = document.querySelector("#profileSaveButton");
 export const cardSaveButton = document.querySelector("#cardSaveButton");
+export const avatarSaveButton = document.querySelector("#avatarSaveButton");
 
 export const config = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-10/",
