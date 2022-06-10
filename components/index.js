@@ -126,8 +126,6 @@ editFormAvatar.addEventListener("submit", function (event) {
 editForm.addEventListener("submit", function (event) {
   event.preventDefault();
   renderLoading(true, profileSaveButton);
-  profileTitle.textContent = editFormName.value;
-  profileSubtitle.textContent = editFormDescription.value;
 
   api
     .updateProfile(profileTitle.textContent, profileSubtitle.textContent)
@@ -138,6 +136,8 @@ editForm.addEventListener("submit", function (event) {
       return Promise.reject(`Ошибка ${res.status}`);
     })
     .then(() => {
+      profileTitle.textContent = editFormName.value;
+      profileSubtitle.textContent = editFormDescription.value;
       profileSaveButton.classList.add("button__inactive");
       profileSaveButton.disabled = true;
       closePopup(editPopup);
@@ -152,6 +152,7 @@ editForm.addEventListener("submit", function (event) {
 
 let userId = "";
 
+/*
 api
   .setUser()
   .then((res) => {
@@ -215,7 +216,7 @@ api
     console.log(err); // "Что-то пошло не так: ..."
   })
   .finally(() => {});
-
+*/
 function isCardHasMyLike(likes) {
   console.log(likes);
   let hasMyLike = false;
@@ -229,14 +230,19 @@ function isCardHasMyLike(likes) {
   return hasMyLike;
 }
 
-/*
 Promise.all([api.setUser(), api.setCards()])
+  .then(([userResponse, cardsResponse]) => {
+    return Promise.all([userResponse.json(), cardsResponse.json()]);
+  })
   .then(([user, cards]) => {
     // тут установка данных пользователя
     profileTitle.textContent = user.name;
     profileSubtitle.textContent = user.about;
     profileAvatar.src = user.avatar;
     userId = user._id;
+    console.log("Id = " + userId);
+
+    const initialCards = [];
     // и тут отрисовка карточек
     cards.forEach((card) => {
       const cardId = card._id;
@@ -244,19 +250,23 @@ Promise.all([api.setUser(), api.setCards()])
       const cardLink = card.link;
       const cardLikeCount = card.likes.length;
       console.log(card);
+
       let cardView;
-      let isMyCard = false;
-      if (card.owner._id === userId) {
-        isMyCard = true;
+      if (card.owner._id != userId) {
+        console.log("My card");
+        cardView = createCard(cardId, cardName, cardLink, cardLikeCount, true);
+      } else {
+        cardView = createCard(cardId, cardName, cardLink, cardLikeCount, false);
       }
-      cardView = createCard(cardName, cardLink, cardLikeCount, isMyCard);
+
       elementsSection.append(cardView);
+      initialCards.push(card);
     });
   })
   .catch((err) => {
-    // тут ловим ошибку
+    console.log(err);
   });
-*/
+
 //добавил функцию из модал, чтоб закрывалось при клике на оверлей
 сlosePopupOnOverloy();
 

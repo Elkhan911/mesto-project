@@ -17,6 +17,9 @@ export function toggleLike(cardId, button, likeCountElement) {
         button.classList.toggle("elements__like-button_active");
         console.log(card);
         likeCountElement.textContent = card.likes.length;
+      })
+      .catch((err) => {
+        console.log(err); // "Что-то пошло не так: ..."
       });
     console.log("Like");
   } else {
@@ -31,6 +34,9 @@ export function toggleLike(cardId, button, likeCountElement) {
       .then((card) => {
         button.classList.toggle("elements__like-button_active");
         likeCountElement.textContent = card.likes.length;
+      })
+      .catch((err) => {
+        console.log(err); // "Что-то пошло не так: ..."
       });
     console.log("DisLike");
   }
