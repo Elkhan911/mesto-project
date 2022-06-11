@@ -117,7 +117,7 @@ editForm.addEventListener("submit", function (event) {
   renderLoading(true, profileSaveButton);
 
   api
-    .updateProfile(profileTitle.textContent, profileSubtitle.textContent)
+    .updateProfile(editFormName.value, editFormDescription.value)
     .then(api._checkResponce)
     .then(() => {
       profileTitle.textContent = editFormName.value;
@@ -150,6 +150,7 @@ function isCardHasMyLike(likes) {
 }
 
 Promise.all([api.setUser(), api.setCards()])
+  .then([api._checkResponce, api._checkResponce])
   .then(([userResponse, cardsResponse]) => {
     return Promise.all([userResponse.json(), cardsResponse.json()]);
   })

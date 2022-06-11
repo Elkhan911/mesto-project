@@ -81,4 +81,4 @@ export function _checkResponce(res) {
   }
   console.log("Bad");
   return Promise.reject(`Ошибка ${res.status}`);
-};
+}
